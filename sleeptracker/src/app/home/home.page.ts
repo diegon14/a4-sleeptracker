@@ -22,7 +22,7 @@ export class HomePage {
 	ngOnInit() {
 		console.log(this.allSleepData);
 		const date = new Date();
-		this.sleepDate = date.toLocaleDateString().split("/").join("-");
+		this.sleepDate = date.toISOString();
 		console.log(this.sleepDate);
 	}
 
@@ -32,7 +32,11 @@ export class HomePage {
 	}
 
 	get logDateUrl() {
-		return "/create-log/" + this.sleepDate;
+		let date_obj: Date;
+		let formatted_date_string;
+		date_obj = new Date(this.sleepDate);
+		formatted_date_string = date_obj.toLocaleDateString().split("/").join("-");
+		return "/create-log/" + formatted_date_string;
 	}
 
 	logSleep() {
