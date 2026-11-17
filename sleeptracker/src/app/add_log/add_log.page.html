@@ -1,7 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      New Log
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content [fullscreen]="true">
+    <h1>{{log_date_string}}</h1>
+    <section id="night_sleep">
+        <h2>Night Sleep</h2>
+        <div id="night_sleep_selectors">
+            
+            <div id="bed_time_selector" class="time_selector">
+                <p>Bed Time: </p>
+                <ion-datetime (ionChange)="onDateChange($event)" presentation="date-time" [preferWheel]="true" [(ngModel)]="bed_time_ISO" [max]="log_date_ISO"></ion-datetime>
+            </div>
+            <div id="awake_time_selector" class="time_selector">
+                <p>Wake up time: </p>
+                <ion-datetime (ionChange)="onDateChange($event)" presentation="date-time" [preferWheel]="true" [(ngModel)]="log_date_ISO" [min]="bed_time_ISO"></ion-datetime>
+            </div>
+        
+        </div>
+        <h2 id="rest_time">Total Rest: {{rest_time_string}} hours</h2>
+    </section>
+    
+</ion-content>
