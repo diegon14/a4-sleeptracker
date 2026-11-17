@@ -1,0 +1,33 @@
+#night_sleep_selectors {
+
+}
+
+h1 {
+    font-size: 200%;
+}
+
+#night_sleep {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time_selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.time_selector ion-datetime {
+    --background: rgb(0, 0, 0);
+    --background-rgb: 0, 0, 0;
+    size: cover;
+    transform: scale(0.75);
+    height: 100px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

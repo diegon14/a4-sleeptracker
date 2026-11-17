@@ -16,7 +16,7 @@
   <div id="container">
     <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
-    <ion-button expand="block" (click)="logSleep()">Log Sleep</ion-button>
+    <ion-button expand="block" (click)="logSleep()" [href]="logDateUrl">Log Sleep</ion-button>
     <ion-button expand="block">Log Sleepiness</ion-button>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>

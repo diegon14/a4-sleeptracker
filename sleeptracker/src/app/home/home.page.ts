@@ -20,12 +20,16 @@ export class HomePage {
 	}
 
 	ngOnInit() {
-		// console.log(this.allSleepData);
+		console.log(this.allSleepData);
 	}
 
 	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
 	get allSleepData() {
 		return SleepService.AllSleepData;
+	}
+
+	get logDateUrl() {
+		return "/create-log/" + this.sleepDate;
 	}
 
 	logSleep() {
