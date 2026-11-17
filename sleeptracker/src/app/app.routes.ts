@@ -10,4 +10,9 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'create-log/:id',
+    loadComponent: () => import('./add_log/add_log.page').then((m) => m.LogPage),
+    
+  },
 ];
