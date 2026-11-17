@@ -21,6 +21,9 @@ export class HomePage {
 
 	ngOnInit() {
 		console.log(this.allSleepData);
+		const date = new Date();
+		this.sleepDate = date.toLocaleDateString().split("/").join("-");
+		console.log(this.sleepDate);
 	}
 
 	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
