@@ -42,5 +42,6 @@ export class HomePage {
 	logSleep() {
 		// TODO
 		console.log("Selected Date", this.sleepDate);
+		console.log(this.allSleepData);
 	}
 }
