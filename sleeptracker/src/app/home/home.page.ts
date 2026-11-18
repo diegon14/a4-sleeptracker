@@ -55,14 +55,21 @@ export class HomePage {
 
 	// below used for log sleepieness model
 
+	rating = 4;
+	currentDate: Date = new Date();
+
+	scaleValues = StanfordSleepinessData.ScaleValues;
+
 	@ViewChild(IonModal) modal!: IonModal;
 
 	cancel() {
     	this.modal.dismiss(null, 'cancel');
   	}
 
-	rating = 4;
-	currentDate: Date = new Date();
-
-	scaleValues = StanfordSleepinessData.ScaleValues;
+	logSleepiness() {
+		this.sleepService.logSleepinessData(new StanfordSleepinessData(this.rating, this.currentDate));
+		console.log(this.allSleepData)
+		alert("Sleepiness Successfully Logged")
+		this.modal.dismiss(null, 'cancel');
+	}
 }
