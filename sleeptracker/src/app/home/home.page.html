@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Sleep Tracker
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,46 @@
     <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
     <ion-button expand="block" (click)="logSleep()" [href]="logDateUrl">Log Sleep</ion-button>
-    <ion-button expand="block">Log Sleepiness</ion-button>
+    
+    <ion-button expand="block" id="open-sleepiness-modal">Log Current Sleepiness</ion-button>
+
+    <ion-modal trigger="open-sleepiness-modal">
+      <ng-template> 
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+
+            <ion-title>Log Current Sleepiness</ion-title>
+
+            <ion-buttons slot="end">
+              <ion-button (click)="cancel()" [strong]="true">Submit</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+
+        <h1>Logged At: {{ currentDate | date:'EEE, MMM d h:mm a' }}</h1>
+        <h1>Sleepines: {{rating}}</h1>
+        <h1>{{scaleValues[rating]}}</h1>
+
+        <ion-item lines="none">
+          <ion-range
+            min="1"
+            max="7"
+            step="1"
+            snaps="true"
+            ticks="true"
+            pin="true"
+            [(ngModel)]="rating"
+            aria-label="Rating from 1 to 7">
+            <ion-label slot="start">1 (Alert)</ion-label>
+            <ion-label slot="end">7 (Bedtime)</ion-label>
+          </ion-range>
+        </ion-item>
+      </ng-template>
+    </ion-modal>
+
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>

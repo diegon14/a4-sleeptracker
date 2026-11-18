@@ -1,17 +1,24 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonDatetime} from '@ionic/angular/standalone';
+import { Component, ViewChild } from '@angular/core';
+import { IonHeader, 
+	IonToolbar, IonTitle, 
+	IonContent, IonButton, 
+	IonButtons, IonDatetime, 
+	IonModal, IonItem,
+	IonRange, IonLabel } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonDatetime, FormsModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, 
+	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe],
 })
 export class HomePage {
 	sleepDate = '';
@@ -44,4 +51,18 @@ export class HomePage {
 		console.log("Selected Date", this.sleepDate);
 		console.log(this.allSleepData);
 	}
+
+
+	// below used for log sleepieness model
+
+	@ViewChild(IonModal) modal!: IonModal;
+
+	cancel() {
+    	this.modal.dismiss(null, 'cancel');
+  	}
+
+	rating = 4;
+	currentDate: Date = new Date();
+
+	scaleValues = StanfordSleepinessData.ScaleValues;
 }
