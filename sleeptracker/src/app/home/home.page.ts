@@ -9,6 +9,7 @@ import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
+import { LogPage } from '../add_log/add_log.page';
 
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -18,7 +19,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, 
-	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe],
+	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe, LogPage],
 })
 export class HomePage {
 	sleepDate = '';

@@ -1,8 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      New Log
-    </ion-title>
+    <ion-buttons slot="start">
+        <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+
+    <ion-title>New Log</ion-title>
+
+    <ion-buttons slot="end">
+        <ion-button [strong]="true">Submit</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

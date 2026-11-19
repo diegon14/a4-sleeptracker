@@ -16,7 +16,7 @@
   <div id="container">
     <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
-    <ion-button expand="block" (click)="logSleep()" [href]="logDateUrl">Log Sleep</ion-button>
+    <ion-button expand="block" (click)="logSleep()" id="open-sleep-modal">Log Sleep</ion-button>
     
     <ion-button expand="block" id="open-sleepiness-modal">Log Current Sleepiness</ion-button>
 
@@ -54,6 +54,12 @@
             <ion-label slot="end">7 (Bedtime)</ion-label>
           </ion-range>
         </ion-item>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal trigger="open-sleep-modal">
+      <ng-template>
+        <app-add-log [current_date]="sleepDate"></app-add-log>
       </ng-template>
     </ion-modal>
 
