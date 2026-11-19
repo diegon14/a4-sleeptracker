@@ -16,6 +16,19 @@
   <div id="container">
     <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
+
+    @defer (on timer(200ms)) {
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Most Recent Log: {{latestSleepData.constructor.name}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{latestSleepData.dateString()}}: {{latestSleepData.summaryString()}}
+        </ion-card-content>
+      </ion-card>
+    }
+     
     <ion-button expand="block" (click)="logSleep()" id="open-sleep-modal">Log Sleep</ion-button>
     
     <ion-button expand="block" id="open-sleepiness-modal">Log Current Sleepiness</ion-button>

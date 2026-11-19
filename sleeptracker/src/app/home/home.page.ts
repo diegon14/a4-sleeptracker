@@ -4,7 +4,10 @@ import { IonHeader,
 	IonContent, IonButton, 
 	IonButtons, IonDatetime, 
 	IonModal, IonItem,
-	IonRange, IonLabel } from '@ionic/angular/standalone';
+	IonRange, IonLabel,
+	IonCard, IonCardContent,
+	IonCardHeader, IonCardSubtitle, 
+	IonCardTitle } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
@@ -19,7 +22,8 @@ import { DatePipe } from '@angular/common';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, 
-	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe, LogPage],
+	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe, LogPage,
+	IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle],
 })
 export class HomePage {
 	sleepDate = '';
@@ -37,6 +41,10 @@ export class HomePage {
 	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
 	get allSleepData() {
 		return SleepService.AllSleepData;
+	}
+
+	get latestSleepData() {
+		return this.allSleepData[this.allSleepData.length - 1];
 	}
 
 	get logDateUrl() {
@@ -68,7 +76,7 @@ export class HomePage {
   	}
 
 	logSleepiness() {
-		this.sleepService.logSleepinessData(new StanfordSleepinessData(this.rating, this.currentDate));
+		this.sleepService.logSleepinessData(new StanfordSleepinessData(Number(this.rating), this.currentDate));
 		console.log(this.allSleepData)
 		alert("Sleepiness Successfully Logged")
 		this.modal.dismiss(null, 'cancel');
