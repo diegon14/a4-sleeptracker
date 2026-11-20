@@ -17,7 +17,7 @@
     <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
 
-    @defer (on timer(200ms)) {
+    @if (latestSleepData) {
       <ion-card>
         <ion-card-header>
           <ion-card-title>Most Recent Log: {{latestSleepData.constructor.name}}</ion-card-title>
@@ -28,6 +28,10 @@
         </ion-card-content>
       </ion-card>
     }
+
+    <ion-item>
+      <span slot="end" id="view-logs-button">View All Logs</span>
+    </ion-item>
      
     <ion-button expand="block" (click)="logSleep()" id="open-sleep-modal">Log Sleep</ion-button>
     
@@ -75,7 +79,5 @@
         <app-add-log [current_date]="sleepDate"></app-add-log>
       </ng-template>
     </ion-modal>
-
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>
