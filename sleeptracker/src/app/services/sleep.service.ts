@@ -38,7 +38,7 @@ export class SleepService {
 
 			SleepService.AllSleepinessData = sleepinessData.map((data: any) =>
 				new StanfordSleepinessData(
-					data.sleepiness,
+					Number(data.loggedValue),
 					new Date(data.loggedAt)
 				)
 			);
@@ -51,7 +51,7 @@ export class SleepService {
 					);
 				} else {
 					return new StanfordSleepinessData(
-						data.sleepiness,
+						Number(data.loggedValue),
 						new Date(data.loggedAt)
 					);
 				}
