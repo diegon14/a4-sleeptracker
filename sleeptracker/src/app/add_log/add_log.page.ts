@@ -29,8 +29,8 @@ export class LogPage {
 
     onDateChange(event: any) {
         this.rest_time = ((Date.parse(this.log_date_ISO) - Date.parse(this.bed_time_ISO)) / (1000 * 60 * 60));
-        console.log(Date.parse(this.log_date_ISO));
-        console.log(Date.parse(this.bed_time_ISO));
+        console.log("wake up:" + Date.parse(this.log_date_ISO));
+        console.log("bed:" + Date.parse(this.bed_time_ISO));
         console.log((Date.parse(this.log_date_ISO) - Date.parse(this.bed_time_ISO)));
         this.rest_time_string = this.rest_time.toFixed(2);
     }
@@ -46,25 +46,16 @@ export class LogPage {
     }
 
     ngOnInit() {
-        // gets the date from uri
-        // this.log_date_string = this.route.snapshot.paramMap.get('id');
-
-        // gets the parts to format it into the global format
-        // let date_parts = this.log_date_string?.split('-');
-        // if (this.log_date_string !== null && date_parts !== undefined) {
-        //     this.log_date = new Date(Number.parseInt(date_parts[2]), Number.parseInt(date_parts[0]) - 1, Number.parseInt(date_parts[1]));
-        //     // ISO format is needed by ion-datetime
-        //     this.log_date_ISO = this.log_date.toISOString();
-        // }
         this.log_date = new Date(this.current_date);
         // this.log_date.setHours(this.log_date.getHours() - 8);
         this.log_date_string = this.log_date.toDateString();
-        this.log_date_ISO = this.log_date.toISOString();
+        this.log_date_ISO = this.current_date
         
         this.bed_time = new Date(this.log_date);
         // set the bed time to a day before by default
         this.bed_time.setDate(this.log_date.getDate() - 1);
-        this.bed_time_ISO = this.bed_time.toISOString();
+        this.bed_time_ISO = `${this.bed_time.getFullYear()}-${(this.bed_time.getMonth() + 1)}-${(this.bed_time.getDate())}` +
+    	`T${(this.bed_time.getHours())}:${(this.bed_time.getMinutes())}:${(this.bed_time.getSeconds())}`;
 
         // set the time slept for the first time
         this.rest_time = (Date.parse(this.log_date_ISO) - Date.parse(this.bed_time_ISO)) / (1000 * 60 * 60);
