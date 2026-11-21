@@ -7,7 +7,7 @@ import { IonHeader,
 	IonRange, IonLabel,
 	IonCard, IonCardContent,
 	IonCardHeader, IonCardSubtitle, 
-	IonCardTitle } from '@ionic/angular/standalone';
+	IonCardTitle, IonList } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
@@ -23,7 +23,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, 
 	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe, LogPage,
-	IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle],
+	IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList],
 })
 export class HomePage {
 	sleepDate = '';
@@ -36,7 +36,7 @@ export class HomePage {
 		const date = new Date();
 		let seconds = "00";
 		this.sleepDate = `${date.getFullYear()}-${(date.getMonth() + 1)}-${(date.getDate())}` +
-    	`T${(date.getHours())}:${(date.getMinutes())}:${(date.getSeconds())}`;
+    	`T${(date.getHours())}:${(date.getMinutes())}:00`;
 		console.log(this.sleepDate);
 	}
 

@@ -32,6 +32,35 @@
     <ion-item>
       <span slot="end" id="view-logs-button">View All Logs</span>
     </ion-item>
+
+    <ion-modal trigger="view-logs-button">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+
+            <ion-title>Log Current Sleepiness</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            @for (log of allSleepData; track log.id; let i = $index) {
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title>{{log.constructor.name}}</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                  {{log.dateString()}}: {{log.summaryString()}}
+                </ion-card-content>
+              </ion-card>
+            }
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
      
     <ion-button expand="block" (click)="logSleep()" id="open-sleep-modal">Log Sleep</ion-button>
     
