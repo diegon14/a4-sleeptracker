@@ -3,6 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonDatetime, Io
 import { SleepService } from '../services/sleep.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { OvernightSleepData } from '../data/overnight-sleep-data';
 
 @Component({
     selector: 'app-add-log',
@@ -28,11 +29,20 @@ export class LogPage {
 
     onDateChange(event: any) {
         this.rest_time = ((Date.parse(this.log_date_ISO) - Date.parse(this.bed_time_ISO)) / (1000 * 60 * 60));
+        console.log(Date.parse(this.log_date_ISO));
+        console.log(Date.parse(this.bed_time_ISO));
+        console.log((Date.parse(this.log_date_ISO) - Date.parse(this.bed_time_ISO)));
         this.rest_time_string = this.rest_time.toFixed(2);
     }
 
     cancel() {
         this.modalController.dismiss(null, 'cancel');
+    }
+
+    logOvernight() {
+        this.sleepService.logOvernightData(new OvernightSleepData(new Date(this.bed_time_ISO), new Date(this.log_date_ISO)));
+        alert("Overnight Sleep Successfully Logged");
+        this.cancel();
     }
 
     ngOnInit() {
@@ -47,6 +57,7 @@ export class LogPage {
         //     this.log_date_ISO = this.log_date.toISOString();
         // }
         this.log_date = new Date(this.current_date);
+        // this.log_date.setHours(this.log_date.getHours() - 8);
         this.log_date_string = this.log_date.toDateString();
         this.log_date_ISO = this.log_date.toISOString();
         
