@@ -33,12 +33,12 @@
       <span slot="end" id="view-logs-button">View All Logs</span>
     </ion-item>
 
-    <ion-modal trigger="view-logs-button">
+    <ion-modal #allLogsModal trigger="view-logs-button">
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="cancel()">Cancel</ion-button>
+              <ion-button (click)="cancelAllLogsModal()">Cancel</ion-button>
             </ion-buttons>
 
             <ion-title>Log Current Sleepiness</ion-title>
@@ -66,12 +66,12 @@
     
     <ion-button expand="block" id="open-sleepiness-modal">Log Current Sleepiness</ion-button>
 
-    <ion-modal trigger="open-sleepiness-modal">
+    <ion-modal #sleepinessModal trigger="open-sleepiness-modal">
       <ng-template> 
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="cancel()">Cancel</ion-button>
+              <ion-button (click)="cancelSleepinessModal()">Cancel</ion-button>
             </ion-buttons>
 
             <ion-title>Log Current Sleepiness</ion-title>

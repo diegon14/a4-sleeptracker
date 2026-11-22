@@ -23,7 +23,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, 
 	IonDatetime, FormsModule, IonModal, IonItem, IonRange, IonLabel, DatePipe, LogPage,
-	IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonList],
+	IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonList],
 })
 export class HomePage {
 	sleepDate = '';
@@ -71,16 +71,22 @@ export class HomePage {
 
 	scaleValues = StanfordSleepinessData.ScaleValues;
 
-	@ViewChild(IonModal) modal!: IonModal;
+	@ViewChild('allLogsModal') modal!: IonModal;
 
-	cancel() {
+	@ViewChild('sleepinessModal') sleepinessModal!: IonModal;
+
+	cancelAllLogsModal() {
     	this.modal.dismiss(null, 'cancel');
   	}
+
+	cancelSleepinessModal() {
+		this.sleepinessModal.dismiss(null, 'cancel');
+	}
 
 	logSleepiness() {
 		this.sleepService.logSleepinessData(new StanfordSleepinessData(Number(this.rating), this.currentDate));
 		console.log(this.allSleepData)
 		alert("Sleepiness Successfully Logged")
-		this.modal.dismiss(null, 'cancel');
+		this.sleepinessModal.dismiss(null, 'cancel');
 	}
 }
