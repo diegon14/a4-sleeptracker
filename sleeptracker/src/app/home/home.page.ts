@@ -6,7 +6,7 @@ import { IonHeader,
 	IonModal, IonItem,
 	IonRange, IonLabel,
 	IonCard, IonCardContent,
-	IonCardHeader, IonCardSubtitle, 
+	IonCardHeader, ToastController, 
 	IonCardTitle, IonList } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
@@ -27,9 +27,11 @@ import { DatePipe } from '@angular/common';
 })
 export class HomePage {
 	sleepDate = '';
-  constructor(public sleepService:SleepService) {
-
-	}
+  	
+	constructor(
+		public sleepService:SleepService,
+		private toastController: ToastController
+	) {}
 
 	ngOnInit() {
 		console.log(this.allSleepData);
@@ -83,10 +85,17 @@ export class HomePage {
 		this.sleepinessModal.dismiss(null, 'cancel');
 	}
 
-	logSleepiness() {
+	async logSleepiness() {
 		this.sleepService.logSleepinessData(new StanfordSleepinessData(Number(this.rating), this.currentDate));
 		console.log(this.allSleepData)
-		alert("Sleepiness Successfully Logged")
 		this.sleepinessModal.dismiss(null, 'cancel');
+
+		const toast = await this.toastController.create({
+			message: 'Sleepiness Successfully Logged',
+			duration: 2500,
+			position: 'top',
+			color: 'success'
+		});
+		await toast.present()
 	}
 }

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonDatetime, IonModal, IonButtons, ModalController} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonDatetime, IonModal, IonButtons, ModalController, ToastController} from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { OvernightSleepData } from '../data/overnight-sleep-data';
     selector: 'app-add-log',
     templateUrl: 'add_log.page.html',
     styleUrls: ['add_log.page.scss'],
-    imports: [IonModal, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonDatetime, FormsModule],
+    imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonDatetime, FormsModule],
 })
 
 export class LogPage {
@@ -23,7 +23,7 @@ export class LogPage {
     rest_time: number = 0;
     rest_time_string: string = '0';
     
-    constructor(public route: ActivatedRoute, public sleepService:SleepService, public modalController: ModalController) {
+    constructor(public route: ActivatedRoute, public sleepService:SleepService, public modalController: ModalController, private toastController: ToastController) {
 
     }
 
@@ -39,10 +39,16 @@ export class LogPage {
         this.modalController.dismiss(null, 'cancel');
     }
 
-    logOvernight() {
+    async logOvernight() {
         this.sleepService.logOvernightData(new OvernightSleepData(new Date(this.bed_time_ISO), new Date(this.log_date_ISO)));
-        alert("Overnight Sleep Successfully Logged");
         this.cancel();
+        const toast = await this.toastController.create({
+			message: 'Sleepiness Successfully Logged',
+			duration: 2500,
+			position: 'top',
+			color: 'success'
+		});
+		await toast.present()
     }
 
     ngOnInit() {
