@@ -14,7 +14,7 @@
   </ion-header>
 
   <div id="container">
-    <ion-datetime show-adjacent-days="true" [(ngModel)]="sleepDate"
+    <ion-datetime id="calendar"show-adjacent-days="true" [(ngModel)]="sleepDate"
       presentation="date" [showDefaultTitle]="true"></ion-datetime>
 
     @if (latestSleepData) {
@@ -30,7 +30,7 @@
     }
 
     <ion-item>
-      <span slot="end" id="view-logs-button">View All Logs</span>
+      <span slot="end" id="view-logs-button">View All Logs ▼</span>
     </ion-item>
 
     <ion-modal #allLogsModal trigger="view-logs-button">
