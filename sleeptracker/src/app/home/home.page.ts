@@ -36,9 +36,10 @@ export class HomePage {
 	ngOnInit() {
 		console.log(this.allSleepData);
 		const date = new Date();
-		let seconds = "00";
+		let hours = date.getHours().toString().length === 1 ? `0${date.getHours().toString()}` : date.getHours().toString();
+		let minutes = date.getMinutes().toString().length === 1 ? `0${date.getMinutes().toString()}` : date.getMinutes().toString();
 		this.sleepDate = `${date.getFullYear()}-${(date.getMonth() + 1)}-${(date.getDate())}` +
-    	`T${(date.getHours())}:${(date.getMinutes())}:00`;
+    	`T${hours}:${minutes}:00`;
 		console.log(this.sleepDate);
 	}
 

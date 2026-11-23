@@ -60,8 +60,10 @@ export class LogPage {
         this.bed_time = new Date(this.log_date);
         // set the bed time to a day before by default
         this.bed_time.setDate(this.log_date.getDate() - 1);
+        let hours = this.bed_time.getHours().toString().length === 1 ? `0${this.bed_time.getHours().toString()}` : this.bed_time.getHours().toString();
+		let minutes = this.bed_time.getMinutes().toString().length === 1 ? `0${this.bed_time.getMinutes().toString()}` : this.bed_time.getMinutes().toString();
         this.bed_time_ISO = `${this.bed_time.getFullYear()}-${(this.bed_time.getMonth() + 1)}-${(this.bed_time.getDate())}` +
-    	`T${(this.bed_time.getHours())}:${(this.bed_time.getMinutes())}:00`;
+    	`T${hours}:${minutes}:00`;
 
         // set the time slept for the first time
         console.log("bed time: " + this.bed_time_ISO);
