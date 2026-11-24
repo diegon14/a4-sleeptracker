@@ -27,6 +27,8 @@ import { DatePipe } from '@angular/common';
 })
 export class HomePage {
 	sleepDate = '';
+
+	reversedSleepData: SleepData[] = [];
   	
 	constructor(
 		public sleepService:SleepService,
@@ -84,6 +86,11 @@ export class HomePage {
 
 	cancelSleepinessModal() {
 		this.sleepinessModal.dismiss(null, 'cancel');
+	}
+
+	reverseSleepLogs() {
+		let sleepDataCopy = this.allSleepData.slice();
+		this.reversedSleepData = sleepDataCopy.reverse();
 	}
 
 	async logSleepiness() {
