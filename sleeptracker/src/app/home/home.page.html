@@ -81,25 +81,27 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-
-        <h1>Logged At: {{ currentDate | date:'EEE, MMM d h:mm a' }}</h1>
-        <h1>Sleepines: {{rating}}</h1>
-        <h1>{{scaleValues[rating]}}</h1>
-
-        <ion-item lines="none">
+        <section id="sleepiness-information">
+          <h1>Logged At: {{ currentDate | date:'EEE, MMM d h:mm a' }}</h1>
+          <p>Select sleepiness level on a scale of 1-7, based on the descriptions at each level: </p>
           <ion-range
-            min="1"
-            max="7"
-            step="1"
-            snaps="true"
-            ticks="true"
-            pin="true"
-            [(ngModel)]="rating"
-            aria-label="Rating from 1 to 7">
-            <ion-label slot="start">1 (Alert)</ion-label>
-            <ion-label slot="end">7 (Bedtime)</ion-label>
+              min="1"
+              max="7"
+              step="1"
+              snaps="true"
+              ticks="true"
+              pin="true"
+              [(ngModel)]="rating"
+              aria-label="Rating from 1 to 7" class="ion-flex-1">
+              <ion-label slot="start">1 (Alert)</ion-label>
+              <ion-label slot="end">7 (Bedtime)</ion-label>
           </ion-range>
-        </ion-item>
+          <h2>Sleepines: {{rating}}</h2>
+          <h2>{{scaleValues[rating]}}</h2>
+          
+        </section>
+            
+        
       </ng-template>
     </ion-modal>
 
